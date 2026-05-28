@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DREAMEZ — Producción Audiovisual · El Salvador</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --gold-dark: #9A7A32;
+      --bg: #0A0A0A;
+      --bg2: #111111;
+      --bg3: #181818;
+      --text: #FFFFFF;
+      --text-muted: #999999;
+      --border: rgba(201,168,76,0.2);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: .5;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 6%;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 1.4rem; font-weight: 800; letter-spacing: .2em;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex; gap: 2.5rem; list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      transition: color .3s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--gold); color: #000 !important;
+      padding: .55rem 1.4rem; border-radius: 2px;
+      font-weight: 700 !important; letter-spacing: .1em;
+      transition: background .3s !important;
+    }
+
+    .nav-cta:hover { background: var(--gold-light) !important; color: #000 !important; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 7rem 6% 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* animated gradient bg */
+    #hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(201,168,76,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      max-width: 1200px;
+      width: 100%;
+      position: relative; z-index: 1;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -.02em;
+    }
+
+    .hero-text h1 .gold { color: var(--gold); }
+
+    .hero-tagline {
+      margin-top: 1.5rem;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 420px;
+    }
+
+    .hero-tagline strong { color: var(--text); }
+
+    .hero-divider {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 2rem 0;
+    }
+
+    .hero-location {
+      display: inline-flex; align-items: center; gap: .5rem;
+      color: var(--gold); font-size: .85rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .hero-btns {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      margin-top: 2.5rem;
+    }
+
+    .btn-primary {
+      background: var(--gold); color: #000;
+      padding: .9rem 2rem; border-radius: 2px;
+      font-weight: 700; font-size: .9rem; letter-spacing: .1em; text-transform: uppercase;
+      text-decoration: none;
+      transition: all .3s;
+      border: none; cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201,168,76,.35);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border); color: var(--text);
+      padding: .9rem 2rem; border-radius: 2px;
+      font-weight: 600; font-size: .9rem; letter-spacing: .1em; text-transform: uppercase;
+      text-decoration: none;
+      transition: all .3s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold); color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /* ── INSTAGRAM CARD ── */
+    .ig-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(201,168,76,.08);
+      position: relative;
+    }
+
+    .ig-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold));
+    }
+
+    .ig-card-header {
+      padding: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+
+    .ig-avatar-wrap {
+      position: relative; flex-shrink: 0;
+    }
+
+    .ig-avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      display: block;
+      background: linear-gradient(135deg, var(--gold-dark), var(--bg3));
+    }
+
+    .ig-avatar-fallback {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-dark), var(--bg3));
+      border: 2px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; font-weight: 900; color: var(--gold);
+    }
+
+    .ig-info h3 {
+      font-size: 1rem; font-weight: 700; display: flex; align-items: center; gap: .4rem;
+    }
+
+    .ig-handle {
+      color: var(--text-muted); font-size: .8rem; margin-top: .2rem;
+    }
+
+    .ig-stats {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      text-align: center;
+    }
+
+    .ig-stat-num {
+      font-size: 1.3rem; font-weight: 800; color: var(--gold);
+    }
+
+    .ig-stat-label {
+      font-size: .65rem; color: var(--text-muted); letter-spacing: .08em; text-transform: uppercase; margin-top: .2rem;
+    }
+
+    .ig-bio {
+      padding: 1.2rem 1.5rem;
+      font-size: .82rem; line-height: 1.7; color: var(--text-muted);
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+
+    .ig-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 2px; padding: 2px;
+    }
+
+    .ig-cell {
+      aspect-ratio: 1;
+      background: var(--bg3);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .ig-cell::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(201,168,76,0);
+      transition: background .3s;
+    }
+
+    .ig-cell:hover::after { background: rgba(201,168,76,.15); }
+
+    .ig-cell-inner {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .7rem; color: var(--text-muted);
+      background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Fake video play icons */
+    .ig-cell-inner::before {
+      content: '▶';
+      font-size: 1.2rem; color: rgba(201,168,76,.5);
+      position: absolute;
+      text-shadow: 0 0 20px rgba(201,168,76,.3);
+    }
+
+    .ig-link {
+      display: block; padding: 1rem 1.5rem;
+      text-align: center;
+      font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none;
+      transition: color .3s;
+    }
+
+    .ig-link:hover { color: var(--gold-light); }
+
+    /* ── STATS RIBBON ── */
+    .stats-ribbon {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 6%;
+      display: flex; justify-content: center;
+    }
+
+    .stats-inner {
+      display: flex; gap: 5rem; flex-wrap: wrap; justify-content: center;
+      max-width: 1200px; width: 100%;
+    }
+
+    .stat-item { text-align: center; }
+
+    .stat-num {
+      font-size: 2.4rem; font-weight: 900; color: var(--gold);
+      display: block; line-height: 1;
+    }
+
+    .stat-desc {
+      font-size: .72rem; color: var(--text-muted);
+      letter-spacing: .12em; text-transform: uppercase; margin-top: .4rem;
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 6rem 6%; }
+
+    .section-label {
+      font-size: .72rem; font-weight: 700; letter-spacing: .3em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: .8rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900; line-height: 1.1; letter-spacing: -.02em;
+    }
+
+    .section-title em {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; color: var(--gold);
+    }
+
+    .section-sub {
+      color: var(--text-muted); margin-top: 1rem;
+      font-size: .95rem; line-height: 1.7; max-width: 560px;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+      max-width: 1200px; margin: 0 auto;
+    }
+
+    .about-highlights {
+      display: flex; flex-wrap: wrap; gap: .6rem;
+      margin-top: 2rem;
+    }
+
+    .tag {
+      border: 1px solid var(--border);
+      padding: .4rem .9rem; border-radius: 2px;
+      font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--gold); background: rgba(201,168,76,.06);
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    .about-card::before {
+      content: '"';
+      position: absolute; top: 1rem; left: 2rem;
+      font-size: 5rem; line-height: 1; color: rgba(201,168,76,.15);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .about-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; font-size: 1.1rem; line-height: 1.7;
+      color: var(--text-muted); margin-top: 2rem;
+    }
+
+    .about-quote strong { color: var(--gold); font-style: normal; font-family: 'Montserrat', sans-serif; }
+
+    .about-platforms {
+      display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;
+    }
+
+    .platform-pill {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+      padding: .5rem 1rem; border-radius: 100px;
+      font-size: .75rem; font-weight: 600; color: var(--text-muted);
+      text-decoration: none; transition: all .3s;
+    }
+
+    .platform-pill:hover { border-color: var(--gold); color: var(--gold); }
+
+    .platform-pill svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* ── SERVICES ── */
+    #services { background: var(--bg); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+      max-width: 1200px; margin-left: auto; margin-right: auto;
+    }
+
+    .service-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2.5rem 2rem;
+      position: relative; overflow: hidden;
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+      cursor: default;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .4s;
+    }
+
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,.5); border-color: rgba(201,168,76,.4); }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      font-size: 2.2rem; margin-bottom: 1.2rem; display: block;
+    }
+
+    .service-name {
+      font-size: 1.05rem; font-weight: 700; margin-bottom: .8rem;
+    }
+
+    .service-desc {
+      font-size: .85rem; color: var(--text-muted); line-height: 1.7;
+    }
+
+    .service-features {
+      margin-top: 1.5rem; list-style: none;
+    }
+
+    .service-features li {
+      font-size: .78rem; color: var(--text-muted); padding: .3rem 0;
+      display: flex; align-items: center; gap: .6rem;
+    }
+
+    .service-features li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+
+    /* ── PORTFOLIO ── */
+    #portfolio {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .portfolio-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      max-width: 1200px; margin: 0 auto 3rem;
+      flex-wrap: wrap; gap: 1rem;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 1rem;
+      max-width: 1200px; margin: 0 auto;
+    }
+
+    .portfolio-item {
+      background: var(--bg3);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border);
+      transition: transform .3s, box-shadow .3s;
+      aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .portfolio-item.featured {
+      grid-column: span 2;
+      aspect-ratio: 16/9;
+    }
+
+    .portfolio-item:hover { transform: scale(1.02); box-shadow: 0 20px 50px rgba(0,0,0,.6); z-index: 2; }
+
+    .portfolio-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.85) 0%, transparent 50%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 1.5rem;
+      opacity: 0; transition: opacity .3s;
+    }
+
+    .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+
+    .portfolio-cat {
+      font-size: .65rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: .3rem;
+    }
+
+    .portfolio-title-card {
+      font-size: .9rem; font-weight: 700;
+    }
+
+    .portfolio-visual {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+
+    .portfolio-play {
+      width: 52px; height: 52px;
+      border: 2px solid rgba(201,168,76,.6);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; color: var(--gold);
+      transition: all .3s;
+    }
+
+    .portfolio-item:hover .portfolio-play {
+      background: var(--gold); color: #000; border-color: var(--gold);
+      box-shadow: 0 0 30px rgba(201,168,76,.5);
+    }
+
+    .portfolio-bg-label {
+      position: absolute; bottom: .8rem; left: .8rem;
+      font-size: .6rem; color: var(--text-muted); letter-spacing: .1em; text-transform: uppercase;
+    }
+
+    /* gradient overlays for portfolio items */
+    .p-grad-1 { background: linear-gradient(135deg, #1a1208, #0f0d0a); }
+    .p-grad-2 { background: linear-gradient(135deg, #0a0f1a, #08100f); }
+    .p-grad-3 { background: linear-gradient(135deg, #1a0a0a, #0f0808); }
+    .p-grad-4 { background: linear-gradient(135deg, #0d1a0a, #0a0f08); }
+    .p-grad-5 { background: linear-gradient(135deg, #1a1208, #0f0d0a); }
+
+    .portfolio-link {
+      display: block; text-align: center; margin-top: 2.5rem;
+      max-width: 1200px; margin-left: auto; margin-right: auto;
+    }
+
+    /* ── HIGHLIGHTS ── */
+    #highlights { background: var(--bg); }
+
+    .highlights-grid {
+      display: flex; gap: 1.2rem; flex-wrap: wrap;
+      margin-top: 3rem; max-width: 1200px; margin-left: auto; margin-right: auto;
+      justify-content: center;
+    }
+
+    .highlight-item {
+      text-align: center; cursor: pointer;
+    }
+
+    .highlight-ring {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+      padding: 2px;
+      margin: 0 auto .6rem;
+      transition: transform .3s, box-shadow .3s;
+    }
+
+    .highlight-item:hover .highlight-ring { transform: scale(1.05); box-shadow: 0 0 20px rgba(201,168,76,.4); }
+
+    .highlight-inner {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: var(--bg3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+    }
+
+    .highlight-name {
+      font-size: .65rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: var(--bg2); border-top: 1px solid var(--border); }
+
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem; margin-top: 3rem; max-width: 1200px; margin-left: auto; margin-right: auto;
+    }
+
+    .testimonial-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute; top: 1rem; right: 1.5rem;
+      font-size: 4rem; line-height: 1; color: rgba(201,168,76,.12);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .testimonial-stars {
+      color: var(--gold); font-size: .9rem; margin-bottom: 1rem; letter-spacing: .1em;
+    }
+
+    .testimonial-text {
+      font-size: .88rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 1.5rem;
+    }
+
+    .testimonial-author {
+      display: flex; align-items: center; gap: .8rem;
+    }
+
+    .t-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-dark), var(--bg));
+      display: flex; align-items: center; justify-content: center;
+      font-size: .9rem; font-weight: 700; color: var(--gold);
+      flex-shrink: 0; font-family: 'Playfair Display', serif;
+    }
+
+    .t-name { font-size: .85rem; font-weight: 700; }
+    .t-company { font-size: .72rem; color: var(--text-muted); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--bg); border-top: 1px solid var(--border); }
+
+    .contact-inner {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start;
+    }
+
+    .contact-social {
+      display: flex; flex-direction: column; gap: .8rem; margin-top: 2rem;
+    }
+
+    .social-link {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 1.2rem;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 6px; text-decoration: none; color: var(--text);
+      transition: all .3s;
+    }
+
+    .social-link:hover { border-color: var(--gold); color: var(--gold); transform: translateX(4px); }
+
+    .social-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+    .social-info strong { display: block; font-size: .85rem; font-weight: 700; }
+    .social-info span { font-size: .72rem; color: var(--text-muted); }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+
+    .form-group { display: flex; flex-direction: column; gap: .4rem; }
+
+    .form-label {
+      font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .form-input, .form-textarea {
+      background: var(--bg2); border: 1px solid rgba(255,255,255,.1);
+      color: var(--text); border-radius: 4px;
+      padding: .8rem 1rem; font-family: 'Montserrat', sans-serif;
+      font-size: .88rem; transition: border-color .3s; outline: none;
+      resize: none;
+    }
+
+    .form-input:focus, .form-textarea:focus { border-color: var(--gold); }
+
+    .form-textarea { min-height: 120px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 6%;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+
+    .footer-logo { font-size: 1.1rem; font-weight: 800; letter-spacing: .2em; color: var(--gold); }
+
+    .footer-copy { font-size: .72rem; color: var(--text-muted); }
+
+    .footer-ig {
+      font-size: .72rem; color: var(--text-muted); text-decoration: none;
+      transition: color .3s;
+    }
+
+    .footer-ig:hover { color: var(--gold); }
+
+    /* ── FLOATING PARTICLES ── */
+    .particles {
+      position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0;
+      animation: float var(--dur, 8s) ease-in-out var(--delay, 0s) infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+      10% { opacity: .6; }
+      90% { opacity: .2; }
+      100% { transform: translateY(-10vh) translateX(var(--drift, 20px)); opacity: 0; }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .nav-links { display: none; }
+      .portfolio-grid { grid-template-columns: 1fr 1fr; }
+      .portfolio-item.featured { grid-column: span 2; }
+      .stats-inner { gap: 2.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .portfolio-item.featured { grid-column: span 1; }
+    }
+
+    /* ── GOLD LINE ACCENT ── */
+    .gold-line {
+      width: 1px; height: 80px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">DREAMEZ</a>
+  <ul class="nav-links">
+    <li><a href="#about">Nosotros</a></li>
+    <li><a href="#services">Servicios</a></li>
+    <li><a href="#portfolio">Portafolio</a></li>
+    <li><a href="#contact" class="nav-cta">Agendar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="particles" aria-hidden="true">
+    <div class="particle" style="left:10%;--dur:9s;--delay:0s;--drift:30px"></div>
+    <div class="particle" style="left:20%;--dur:12s;--delay:1s;--drift:-20px"></div>
+    <div class="particle" style="left:35%;--dur:8s;--delay:2.5s;--drift:15px"></div>
+    <div class="particle" style="left:55%;--dur:11s;--delay:.5s;--drift:-25px"></div>
+    <div class="particle" style="left:70%;--dur:9.5s;--delay:3s;--drift:20px"></div>
+    <div class="particle" style="left:85%;--dur:13s;--delay:1.5s;--drift:-30px"></div>
+    <div class="particle" style="left:92%;--dur:7s;--delay:4s;--drift:10px"></div>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-location">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        El Salvador &amp; Guatemala
+      </div>
+      <h1>Estética<br/>y <span class="gold">estrategia</span><br/>en cada frame</h1>
+      <div class="hero-divider"></div>
+      <p class="hero-tagline">
+        Producción audiovisual <strong>premium</strong> para marcas que quieren destacar. Video, drone y contenido digital que convierte.
+      </p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Agendar proyecto</a>
+        <a href="#portfolio" class="btn-outline">Ver portafolio</a>
+      </div>
+    </div>
+
+    <!-- Instagram Card -->
+    <div class="ig-card">
+      <div class="ig-card-header">
+        <div class="ig-avatar-wrap">
+          <div class="ig-avatar-fallback">D</div>
+        </div>
+        <div class="ig-info">
+          <h3>
+            DREAMEZ
+          </h3>
+          <div class="ig-handle">@dreamez_sv</div>
+        </div>
+        <div style="margin-left:auto">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#ig-grad)" stroke-width="1.5">
+            <defs>
+              <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#f09433"/>
+                <stop offset="25%" stop-color="#e6683c"/>
+                <stop offset="50%" stop-color="#dc2743"/>
+                <stop offset="75%" stop-color="#cc2366"/>
+                <stop offset="100%" stop-color="#bc1888"/>
+              </linearGradient>
+            </defs>
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="url(#ig-grad)" stroke="none"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="ig-stats">
+        <div>
+          <div class="ig-stat-num">1.2K</div>
+          <div class="ig-stat-label">Seguidores</div>
+        </div>
+        <div>
+          <div class="ig-stat-num">600</div>
+          <div class="ig-stat-label">Siguiendo</div>
+        </div>
+        <div>
+          <div class="ig-stat-num">★★★★★</div>
+          <div class="ig-stat-label">Reseñas</div>
+        </div>
+      </div>
+
+      <div class="ig-bio">
+        🎯 Producción de videos &nbsp;·&nbsp; 🇸🇻 El Salvador<br/>
+        📅 Agenda por DM &nbsp;·&nbsp; 📍 Ver portafolio abajo
+      </div>
+
+      <div class="ig-grid">
+        <div class="ig-cell" title="Video producción"><div class="ig-cell-inner p-grad-1"></div></div>
+        <div class="ig-cell" title="Drone footage"><div class="ig-cell-inner p-grad-2"></div></div>
+        <div class="ig-cell" title="Contenido de marca"><div class="ig-cell-inner p-grad-3"></div></div>
+        <div class="ig-cell" title="Eventos"><div class="ig-cell-inner p-grad-4"></div></div>
+        <div class="ig-cell" title="BTS"><div class="ig-cell-inner p-grad-5"></div></div>
+        <div class="ig-cell" title="Tour turístico"><div class="ig-cell-inner p-grad-1"></div></div>
+      </div>
+
+      <a href="https://instagram.com/dreamez_sv" target="_blank" rel="noopener" class="ig-link">
+        Ver perfil completo en Instagram →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS RIBBON -->
+<div class="stats-ribbon">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <span class="stat-num">100+</span>
+      <span class="stat-desc">Proyectos completados</span>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-num">2</span>
+      <span class="stat-desc">Países · SV &amp; GT</span>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-num">50+</span>
+      <span class="stat-desc">Marcas atendidas</span>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-num">5★</span>
+      <span class="stat-desc">Calificación promedio</span>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="reveal">
+      <p class="section-label">Quiénes somos</p>
+      <h2 class="section-title">Contamos tu historia<br/>con <em>impacto visual</em></h2>
+      <p class="section-sub">
+        Somos un equipo de producción audiovisual basado en El Salvador. Combinamos estética y estrategia para crear contenido que no solo se ve bien — <strong>convierte</strong>.
+      </p>
+      <div class="about-highlights">
+        <span class="tag">Producción de videos</span>
+        <span class="tag">Drone</span>
+        <span class="tag">Contenido para marcas</span>
+        <span class="tag">Turismo</span>
+        <span class="tag">Eventos</span>
+        <span class="tag">Fotografía</span>
+        <span class="tag">BTS</span>
+        <span class="tag">Airbnb</span>
+      </div>
+      <div class="about-platforms" style="margin-top:2rem">
+        <a href="https://instagram.com/dreamez_sv" target="_blank" rel="noopener" class="platform-pill">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @dreamez_sv
+        </a>
+        <a href="https://tiktok.com/@dreamez_sv" target="_blank" rel="noopener" class="platform-pill">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.77 1.52V6.77a4.85 4.85 0 01-1-.08z"/></svg>
+          @dreamez_sv
+        </a>
+      </div>
+    </div>
+
+    <div class="about-visual reveal">
+      <div class="about-card">
+        <p class="about-quote">
+          "No vendemos videos. Vendemos <strong>resultados</strong>. Cada producción está diseñada para conectar con tu audiencia y hacer crecer tu marca."
+        </p>
+        <div style="margin-top:1.5rem; display:flex; align-items:center; gap:1rem;">
+          <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--gold-dark),var(--bg));display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:900;color:var(--gold);font-family:'Playfair Display',serif">D</div>
+          <div>
+            <div style="font-size:.85rem;font-weight:700">Equipo DREAMEZ</div>
+            <div style="font-size:.72rem;color:var(--text-muted)">Producción audiovisual · El Salvador</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div style="max-width:1200px; margin:0 auto 3.5rem">
+    <p class="section-label reveal">Lo que hacemos</p>
+    <h2 class="section-title reveal">Servicios <em>creativos</em></h2>
+    <p class="section-sub reveal">Desde una toma aérea hasta una campaña completa de contenido — lo hacemos con precisión y estilo.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-icon">🎬</span>
+      <h3 class="service-name">Producción de Video</h3>
+      <p class="service-desc">Videos profesionales para redes sociales, publicidad, institucionales y más.</p>
+      <ul class="service-features">
+        <li>Video para Instagram &amp; TikTok</li>
+        <li>Videos publicitarios</li>
+        <li>Videos institucionales</li>
+        <li>Edición y postproducción</li>
+      </ul>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🚁</span>
+      <h3 class="service-name">Drone Footage</h3>
+      <p class="service-desc">Tomas aéreas cinematográficas que elevan tu contenido a otro nivel.</p>
+      <ul class="service-features">
+        <li>Fotografía aérea</li>
+        <li>Video aéreo 4K</li>
+        <li>Propiedades y tours</li>
+        <li>Eventos y cobertura</li>
+      </ul>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">📦</span>
+      <h3 class="service-name">Contenido para Marcas</h3>
+      <p class="service-desc">Estrategia visual y producción de contenido mensual para tu empresa.</p>
+      <ul class="service-features">
+        <li>Pack mensual de contenido</li>
+        <li>Stories y Reels</li>
+        <li>Fotos de producto</li>
+        <li>Branding visual</li>
+      </ul>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🏨</span>
+      <h3 class="service-name">Tours Turísticos</h3>
+      <p class="service-desc">Cobertura audiovisual de destinos turísticos, hoteles y Airbnb en El Salvador y Guatemala.</p>
+      <ul class="service-features">
+        <li>Airbnb y hospedajes</li>
+        <li>Destinos naturales</li>
+        <li>Recorridos virtuales</li>
+        <li>Contenido para agencias</li>
+      </ul>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🎉</span>
+      <h3 class="service-name">Cobertura de Eventos</h3>
+      <p class="service-desc">Capturamos cada momento de tu evento con calidad cinematográfica.</p>
+      <ul class="service-features">
+        <li>Eventos corporativos</li>
+        <li>Lanzamientos de producto</li>
+        <li>Conciertos y festivales</li>
+        <li>Bodas y quinceañeras</li>
+      </ul>
+    </div>
+    <div class="service-card reveal" style="border-color:rgba(201,168,76,.4);background:linear-gradient(135deg,rgba(201,168,76,.05),var(--bg2))">
+      <span class="service-icon">✉️</span>
+      <h3 class="service-name">¿Tienes un proyecto?</h3>
+      <p class="service-desc">Cuéntanos tu idea y la hacemos realidad. Agenda una consulta gratuita.</p>
+      <div style="margin-top:1.5rem">
+        <a href="#contact" class="btn-primary" style="display:inline-block;font-size:.8rem;padding:.7rem 1.4rem">Agendar consulta</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="portfolio-header reveal">
+    <div>
+      <p class="section-label">Nuestro trabajo</p>
+      <h2 class="section-title">Portafolio <em>selecto</em></h2>
+    </div>
+    <a href="https://instagram.com/dreamez_sv" target="_blank" rel="noopener" class="btn-outline">Ver todo en Instagram</a>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-item featured p-grad-1 reveal">
+      <div class="portfolio-visual">
+        <div class="portfolio-play">▶</div>
+        <span class="portfolio-bg-label">Producción para marcas</span>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-cat">Marca comercial</div>
+        <div class="portfolio-title-card">Campaña estrategia de contenido digital</div>
+      </div>
+    </div>
+    <div class="portfolio-item p-grad-2 reveal">
+      <div class="portfolio-visual">
+        <div class="portfolio-play">▶</div>
+        <span class="portfolio-bg-label">Drone footage</span>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-cat">Aerial</div>
+        <div class="portfolio-title-card">Tomas aéreas El Salvador</div>
+      </div>
+    </div>
+    <div class="portfolio-item p-grad-3 reveal">
+      <div class="portfolio-visual">
+        <div class="portfolio-play">▶</div>
+        <span class="portfolio-bg-label">Beraká</span>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-cat">Marca comercial</div>
+        <div class="portfolio-title-card">Producción Beraká</div>
+      </div>
+    </div>
+    <div class="portfolio-item p-grad-4 reveal">
+      <div class="portfolio-visual">
+        <div class="portfolio-play">▶</div>
+        <span class="portfolio-bg-label">Airbnb</span>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-cat">Turismo</div>
+        <div class="portfolio-title-card">Tour Airbnb Guatemala</div>
+      </div>
+    </div>
+    <div class="portfolio-item p-grad-5 reveal">
+      <div class="portfolio-visual">
+        <div class="portfolio-play">▶</div>
+        <span class="portfolio-bg-label">Evento</span>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-cat">Eventos</div>
+        <div class="portfolio-title-card">Cobertura de lanzamiento</div>
+      </div>
+    </div>
+  </div>
+  <div class="portfolio-link reveal" style="margin-top:2.5rem;text-align:center">
+    <a href="https://instagram.com/dreamez_sv" target="_blank" rel="noopener" class="btn-outline">
+      Ver portafolio completo en Instagram →
+    </a>
+  </div>
+</section>
+
+<!-- INSTAGRAM HIGHLIGHTS -->
+<section id="highlights" style="padding:4rem 6%">
+  <div style="text-align:center; margin-bottom:3rem" class="reveal">
+    <p class="section-label">Explora en Instagram</p>
+    <h2 class="section-title">Nuestros <em>highlights</em></h2>
+  </div>
+  <div class="highlights-grid">
+    <div class="highlight-item reveal">
+      <div class="highlight-ring">
+        <div class="highlight-inner">🎬</div>
+      </div>
+      <div class="highlight-name">Portafolio</div>
+    </div>
+    <div class="highlight-item reveal">
+      <div class="highlight-ring">
+        <div class="highlight-inner">📦</div>
+      </div>
+      <div class="highlight-name">Marcas</div>
+    </div>
+    <div class="highlight-item reveal">
+      <div class="highlight-ring">
+        <div class="highlight-inner">🎥</div>
+      </div>
+      <div class="highlight-name">BTS</div>
+    </div>
+    <div class="highlight-item reveal">
+      <div class="highlight-ring">
+        <div class="highlight-inner">🎉</div>
+      </div>
+      <div class="highlight-name">Eventos</div>
+    </div>
+    <div class="highlight-item reveal">
+      <div class="highlight-ring">
+        <div class="highlight-inner">⭐</div>
+      </div>
+      <div class="highlight-name">Reseñas</div>
+    </div>
+    <div class="highlight-item reveal">
+      <div class="highlight-ring">
+        <div class="highlight-inner">📩</div>
+      </div>
+      <div class="highlight-name">Contacto</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div style="max-width:1200px; margin:0 auto 3rem" class="reveal">
+    <p class="section-label">Lo que dicen</p>
+    <h2 class="section-title">Clientes que <em>confían</em> en nosotros</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">
+        "El equipo de DREAMEZ capturó perfectamente la esencia de nuestra marca. El video quedó increíble y nuestras ventas aumentaron tras la campaña."
+      </p>
+      <div class="testimonial-author">
+        <div class="t-avatar">A</div>
+        <div>
+          <div class="t-name">Cliente Airbnb</div>
+          <div class="t-company">Hospedaje · Guatemala</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">
+        "Profesionales al 100%. El drone footage superó todas nuestras expectativas. El contenido que produjeron nos ayudó a diferenciarnos en redes."
+      </p>
+      <div class="testimonial-author">
+        <div class="t-avatar">B</div>
+        <div>
+          <div class="t-name">Marca Beraká</div>
+          <div class="t-company">Empresa comercial · El Salvador</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">
+        "Desde el primer momento entendieron lo que quería. El contenido mensual que nos entregan siempre está a tiempo y con una calidad excepcional."
+      </p>
+      <div class="testimonial-author">
+        <div class="t-avatar">M</div>
+        <div>
+          <div class="t-name">Marca local</div>
+          <div class="t-company">Contenido digital · El Salvador</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p style="text-align:center; margin-top:2rem; font-size:.75rem; color:var(--text-muted)">
+    Ver más reseñas en
+    <a href="https://instagram.com/dreamez_sv" target="_blank" rel="noopener" style="color:var(--gold); text-decoration:none">@dreamez_sv</a>
+    · Highlight "RESEÑAS"
+  </p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <p class="section-label">Empecemos</p>
+      <h2 class="section-title">Agenda tu<br/><em>proyecto</em></h2>
+      <p class="section-sub" style="margin-bottom:2rem">
+        ¿Tienes una idea? Cuéntanos. Respondemos en menos de 24 horas.
+      </p>
+      <div class="contact-social">
+        <a href="https://instagram.com/dreamez_sv" target="_blank" rel="noopener" class="social-link">
+          <span class="social-icon">📸</span>
+          <div class="social-info">
+            <strong>Instagram</strong>
+            <span>@dreamez_sv · Agenda por DM</span>
+          </div>
+        </a>
+        <a href="https://tiktok.com/@dreamez_sv" target="_blank" rel="noopener" class="social-link">
+          <span class="social-icon">🎵</span>
+          <div class="social-info">
+            <strong>TikTok</strong>
+            <span>@dreamez_sv</span>
+          </div>
+        </a>
+        <a href="mailto:photodreammendz@gmail.com" class="social-link">
+          <span class="social-icon">✉️</span>
+          <div class="social-info">
+            <strong>Email</strong>
+            <span>photodreammendz@gmail.com</span>
+          </div>
+        </a>
+        <a href="https://photodreammendz.wixsite.com/photodreamme-1" target="_blank" rel="noopener" class="social-link">
+          <span class="social-icon">🌐</span>
+          <div class="social-info">
+            <strong>Portafolio anterior</strong>
+            <span>photodreammendz.wixsite.com</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-input" placeholder="Tu nombre completo" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-input" placeholder="tu@email.com" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tipo de proyecto</label>
+        <select class="form-input" style="cursor:pointer">
+          <option value="">Selecciona un servicio...</option>
+          <option>Producción de video</option>
+          <option>Drone footage</option>
+          <option>Contenido para marcas</option>
+          <option>Tour turístico / Airbnb</option>
+          <option>Cobertura de evento</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Cuéntanos tu proyecto</label>
+        <textarea class="form-textarea" placeholder="Describe brevemente tu proyecto, fechas aproximadas y presupuesto..." required></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;text-align:center">
+        Enviar mensaje →
+      </button>
+      <p id="form-msg" style="display:none; text-align:center; color:var(--gold); font-size:.82rem; margin-top:.5rem"></p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">DREAMEZ</span>
+  <span class="footer-copy">© 2024 DREAMEZ · El Salvador · Todos los derechos reservados</span>
+  <a href="https://instagram.com/dreamez_sv" target="_blank" rel="noopener" class="footer-ig">@dreamez_sv</a>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(r => io.observe(r));
+
+  // Stagger children
+  document.querySelectorAll('.services-grid, .testimonials-grid, .portfolio-grid').forEach(grid => {
+    grid.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = (i * 0.1) + 's';
+    });
+  });
+
+  // Form handler
+  function handleSubmit(e) {
+    e.preventDefault();
+    const msg = document.getElementById('form-msg');
+    msg.style.display = 'block';
+    msg.textContent = '✓ Mensaje enviado. Te contactaremos pronto por email o DM.';
+    e.target.reset();
+    setTimeout(() => { msg.style.display = 'none'; }, 5000);
+  }
+</script>
+</body>
+</html>
